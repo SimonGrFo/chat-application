@@ -64,22 +64,22 @@ const ChatRoom = () => {
   }
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-[calc(100vh-64px)]">
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <div className="fixed top-16 left-0 right-0 bg-red-100 border border-red-400 text-red-700 px-4 py-3 z-10" role="alert">
           <span className="block sm:inline">{error}</span>
         </div>
       )}
       
-      <main className="flex-1 overflow-y-auto p-4 space-y-4">
+      <main className="flex-1 overflow-y-auto p-4 space-y-4 mb-16">
         {messages && [...messages].reverse().map(msg => (
           <ChatMessage key={msg.id} message={msg} />
         ))}
         <div ref={messagesEndRef} />
       </main>
 
-      <form onSubmit={sendMessage} className="p-4 border-t border-gray-200 dark:border-gray-700">
-        <div className="flex space-x-2">
+      <form onSubmit={sendMessage} className="fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-900 p-4 border-t border-gray-200 dark:border-gray-700">
+        <div className="max-w-7xl mx-auto flex space-x-2">
           <input
             value={formValue}
             onChange={(e) => setFormValue(e.target.value)}
